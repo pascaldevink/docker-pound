@@ -13,6 +13,7 @@ By default, pound uses a default backend on localhost, but since there isn't one
 Also, by default it's setup as a load-balancer with just 1 backend and doesn't use SSL.
 
 With the following pound.cfg:
+
 ```
 User "www-data"
 Group "www-data"
@@ -36,7 +37,9 @@ Service
   End
 End
 ```
+
 And a linked container named web (can be anything that provides HTTP, such as nginx or apache) and assuming you have a .pem file on hand, you can run pound with:
+
 ```
 docker run -d -v /myapp/pound/pound.cfg:/etc/pound.cfg -v /myapp/pound/certificate.pem:/var/lib/pound/certificate.pem --link web:web --name pound -p 443:443 pascaldevink/pound:latest
-``` 
+```
